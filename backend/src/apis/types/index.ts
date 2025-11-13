@@ -17,7 +17,7 @@ export interface Computer {
   status: ComputerStatus
   ip_address: string
   location: string | null
-  created_at: string // ISO timestamp
+  created_at: string
 }
 
 // ===================== CUSTOMER =====================

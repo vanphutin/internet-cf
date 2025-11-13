@@ -1,0 +1,6 @@
+{
+  "watch": ["src", ".env.development", ".env.production"],
+  "ext": "ts,js,json",
+  "ignore": ["node_modules", "dist"],
+  "exec": "cross-env NODE_ENV=development tsx ./src/index.ts"
+}

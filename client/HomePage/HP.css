@@ -1,0 +1,193 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f7f6; 
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.sidebar-header a {
+    text-decoration: none;
+    color: #007bff; 
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; 
+}
+
+.sidebar-menu li {
+    padding: 12px 20px;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+}
+
+.sidebar-menu li.active {
+    background-color: #ffe0b2; 
+    border-left: 3px solid #ff9800; 
+    font-weight: bold;
+    color: #333;
+}
+
+.sidebar-menu li:hover:not(.active) {
+    background-color: #f0f0f0;
+}
+
+
+.logout-section {
+    padding: 20px 20px 0;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+
+
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto; 
+}
+
+.customer-management-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+.add-customer-button {
+    padding: 10px 20px;
+    background-color: #9c27b0; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.add-customer-button:hover {
+    background-color: #7b1fa2;
+}
+
+.search-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.customer-table th, .customer-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #555;
+}
+
+.customer-table th {
+    background-color: #fafafa;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.customer-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+
+.status-online {
+    color: #4CAF50; 
+    font-weight: bold;
+}
+
+.status-offline {
+    color: #f44336; 
+    font-weight: bold;
+}
+
+
+.action-cell {
+    white-space: nowrap;
+}
+
+.action-cell span {
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.1s;
+}
+
+.action-cell span:hover {
+    color: #ff9800; 
+}
+
+.action-cell .delete-icon {
+    color: #f44336;
+}
+
+.action-cell .edit-icon {
+    color: #ff9800; 
+    font-weight: bold;
+}

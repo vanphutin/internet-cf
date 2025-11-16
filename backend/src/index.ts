@@ -2,11 +2,21 @@ import dotenv from 'dotenv'
 dotenv.config({ path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development' })
 
 import express, { Application, Request, Response } from 'express'
+import cors from 'cors'
 import database from './config/db.conf'
 import routers from './apis/routes/index.router'
 
 const PORT: number = Number(process.env.PORT) || 5000
 const app: Application = express()
+
+// ⭐ Mở full CORS cho toàn bộ API
+app.use(
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: '*'
+  })
+)
 
 // Middleware xử lý JSON và URL-encoded data
 app.use(express.json())
@@ -20,7 +30,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Server is running!')
 })
 
-// Kết nối Database & khởi động server
+// Kết nối Database & chạy server
 database.getConnection((error, connection) => {
   if (error) {
     console.error('❌ Lỗi kết nối database:', error.message)

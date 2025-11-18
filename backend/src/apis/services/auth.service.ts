@@ -38,11 +38,38 @@ export class AuthService {
         .then((ok) => {
           if (!ok) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
           const token = signToken({
+            id: user.employee_id,
+            role: user.role_id,
+            username: user.username
+          })
+          const { password, ...safeUser } = user
+
+          callback(null, token, safeUser)
+        })
+        .catch(callback)
+    })
+  }
+
+  static loginCustomer(
+    username: string,
+    password: string,
+    callback: (err: Error | null, token?: string, user?: any) => void
+  ): void {
+    AuthModel.findByUsernameCustomer(username, (err, user) => {
+      if (err) return callback(err)
+      if (!user) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
+
+      comparePwd(password, user.password)
+        .then((ok) => {
+          if (!ok) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
+          const token = signToken({
             id: user.customer_id,
             role: user.role_id,
             username: user.username
           })
-          callback(null, token, user)
+          const { password, ...safeUser } = user
+
+          callback(null, token, safeUser)
         })
         .catch(callback)
     })

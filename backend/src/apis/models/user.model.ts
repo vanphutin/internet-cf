@@ -1,25 +1,43 @@
 import pool from '../../config/db.conf'
 import { ResultSetHeader } from 'mysql2'
-import { Customer } from '../types'
+import { Customer, Employee } from '../types'
 
 export const AuthModel = {
-  /* Kiểm tra tài khoản tồn tại (cả Customer & Employee) */
-  findByUsername(username: string, callback: (err: Error | null, row?: Customer) => void) {
+  findByUsername(username: string, callback: (err: Error | null, row?: Employee & { role_name: string }) => void) {
     const sql = `
-      SELECT customer_id AS id, username, password, name, role_id, balance, current_computer_id
-      FROM Customer WHERE username = ?
-      UNION
-      SELECT employee_id AS id, username, password, name, role_id, NULL, NULL
-      FROM Employee WHERE username = ?
-      LIMIT 1
-    `
-    pool.query(sql, [username, username], (err, rows: any[]) => {
+    SELECT 
+      e.employee_id AS id,
+      e.username,
+      e.password,
+      e.name,
+      e.phone,
+      e.email,
+      e.role_id,
+      r.role_name
+    FROM Employee e
+    JOIN UserRole r ON e.role_id = r.role_id
+    WHERE e.username = ?
+    LIMIT 1
+  `
+
+    pool.query(sql, [username], (err, rows: any[]) => {
       if (err) return callback(err)
       callback(null, rows[0] || undefined)
     })
   },
 
-  /* Tạo khách hàng mới (role_id mặc định 3) */
+  findByUsernameCustomer(username: string, callback: (err: Error | null, row?: Customer) => void) {
+    const sql = ` SELECT c.customer_id AS id, c.username, c.password, c.name,  balance, c.current_computer_id, r.role_name, c.phone, c.email, c.created_at
+     FROM Customer c
+     JOIN UserRole r ON c.role_id = r.role_id
+     WHERE c.username = ? 
+     LIMIT 1 `
+
+    pool.query(sql, [username], (err, rows: any[]) => {
+      if (err) return callback(err)
+      callback(null, rows[0] || undefined)
+    })
+  },
   createCustomer(
     data: {
       name: string

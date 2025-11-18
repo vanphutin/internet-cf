@@ -31,4 +31,16 @@ export class AuthController {
       res.json({ success: true, token, user })
     })
   }
+  static loginCustomer(req: Request, res: Response): void {
+    const { username, password } = req.body
+    if (!username || !password) {
+      res.status(400).json({ success: false, message: 'Thiếu tài khoản hoặc mật khẩu' })
+      return
+    }
+
+    AuthService.loginCustomer(username, password, (err, token, user) => {
+      if (err) return res.status(401).json({ success: false, message: err.message })
+      res.json({ success: true, token, user })
+    })
+  }
 }

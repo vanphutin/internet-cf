@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Internet Cafe - Client Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+      }
+      .login-box {
+        background: #222;
+        padding: 30px;
+        border-radius: 10px;
+        width: 350px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 8px 0;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #0c84ff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 12px;
+      }
+      button:hover {
+        background: #0461c1;
+      }
+      .error {
+        margin-top: 10px;
+        color: #ff4d4d;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #0c84ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <div class="logo">Internet Café</div>
+      <h2>Đăng nhập khách</h2>
+
+      <input type="text" id="username" placeholder="Tên đăng nhập" />
+      <input type="password" id="password" placeholder="Mật khẩu" />
+
+      <button onclick="login()">Đăng nhập</button>
+
+      <div id="error" class="error"></div>
+    </div>
+
+    <script>
+      async function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorBox = document.getElementById("error");
+
+        errorBox.innerText = "";
+
+        try {
+          const res = await fetch(
+            "http://localhost:3000/api/v1/auth/login-client",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username, password }),
+            }
+          );
+
+          const data = await res.json();
+
+          if (!data.success) {
+            errorBox.innerText = data.message || "Sai tài khoản hoặc mật khẩu!";
+            return;
+          }
+
+          // Lưu token + user vào localStorage
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+
+          // Chuyển sang trang dashboard
+          window.location.href = "dashboard.html";
+        } catch (err) {
+          errorBox.innerText = "Lỗi kết nối server!";
+        }
+      }
+    </script>
+  </body>
+</html>

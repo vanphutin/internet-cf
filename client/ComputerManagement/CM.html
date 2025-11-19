@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computer Management - Internet Cafe</title>
-    <link rel="stylesheet" href="CM.css">
+    <link rel="stylesheet" href="./css/CM.css">
 </head>
 <body>
 
@@ -110,5 +110,398 @@
         </div>
     </div>
 
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Management - InternetCafe</title>
+
+    <!-- CSS mà bạn vừa gửi -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ========= SIDEBAR (lấy nguyên từ code bạn gửi) ========= */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-header {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        .sidebar-header a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+        }
+        .sidebar-menu li {
+            padding: 12px 20px;
+            color: #4a4a4a;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 14px;
+        }
+        .sidebar-menu li.active {
+            background-color: #ffc107;
+            border-left: 3px solid #ff9800;
+            font-weight: bold;
+            color: #333;
+        }
+        .sidebar-menu li:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+        .logout-section {
+            padding: 20px 20px 0;
+        }
+        .logout-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+        /* ========= END SIDEBAR ========= */
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .management-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+        .card-header h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0 0 20px 0;
+            font-weight: normal;
+        }
+        .input-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .input-grid.row-2 { grid-template-columns: 1fr 1fr; }
+        .input-grid.row-4 { grid-template-columns: repeat(4, 1fr); }
+        .config-section {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        .config-section h2 {
+            font-size: 16px;
+            color: #555;
+            margin: 0 0 15px 0;
+            font-weight: bold;
+        }
+        .input-field input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .search-area {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        .search-area .btn-search {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            height: 40px;
+        }
+        .search-area .btn-search:hover { background-color: #43a047; }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: flex-start;
+        }
+        .action-buttons button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .btn-add      { background-color: #4CAF50; }
+        .btn-update   { background-color: #2196F3; }
+        .btn-delete   { background-color: #f44336; }
+        .btn-refresh  { background-color: #607D8B; }
+        .btn-add:hover     { background-color: #43a047; }
+        .btn-update:hover  { background-color: #1e88e5; }
+        .btn-delete:hover  { background-color: #d32f2f; }
+        .btn-refresh:hover { background-color: #455a64; }
+
+        /* Card máy tính */
+        .computer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .pc-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,.08);
+            padding: 15px;
+            text-align: center;
+            transition: transform .2s;
+        }
+        .pc-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+        .pc-card h4 { margin: 10px 0 5px; font-size: 18px; color: #333; }
+        .pc-card .ip { font-size: 13px; color: #666; }
+        .pc-card .status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .status.available   { background: #10b981; }
+        .status.inUse       { background: #ef4444; }
+        .status.maintenance { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <!-- ====== SIDEBAR (nguyên bản bạn gửi) ====== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html">☕ InternetCafe</a>
+        </div>
+        <ul class="sidebar-menu">
+            <li onclick="location.href='index.html'">Dashboard</li>
+            <li onclick="location.href='#account'">Account</li>
+            <li class="active" onclick="location.href='computers.html'">Computer Management</li>
+            <li onclick="location.href='#customer'">Customer Management</li>
+            <li onclick="location.href='reports.html'">Reports & Statistics</li>
+            <li onclick="location.href='#setting'">Setting</li>
+        </ul>
+        <div class="logout-section">
+            <button class="logout-button" onclick="location.href='#logout'">Logout</button>
+        </div>
+    </aside>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="main-content">
+        <div class="management-card">
+            <div class="card-header">
+                <h1>Quản lý máy tính</h1>
+            </div>
+
+            <!-- Thêm / Tìm kiếm -->
+            <div class="config-section">
+                <h2>Thông tin máy</h2>
+                <div class="input-grid row-2">
+                    <div class="input-field"><input type="text" id="pcName" placeholder="Tên máy"></div>
+                    <div class="input-field"><input type="text" id="pcIP" placeholder="IP Address"></div>
+                    <div class="input-field"><input type="text" id="pcLocation" placeholder="Vị trí"></div>
+                    <div class="input-field">
+                        <select id="pcStatus" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;">
+                            <option value="available">Available</option>
+                            <option value="inUse">In Use</option>
+                            <option value="maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-add" onclick="addComputer()">Thêm</button>
+                <button class="btn-update" onclick="updateComputer()">Sửa</button>
+                <button class="btn-delete" onclick="deleteComputer()">Xóa</button>
+                <button class="btn-refresh" onclick="loadComputers()">Làm mới</button>
+            </div>
+
+            <!-- Tìm kiếm -->
+            <div class="search-area">
+                <div class="input-field">
+                    <input type="text" id="search" placeholder="Tìm theo tên/IP…">
+                </div>
+                <button class="btn-search" onclick="loadComputers()">Tìm</button>
+            </div>
+
+            <!-- Grid máy -->
+            <div class="computer-grid" id="computerGrid">
+                <p class="loading">Đang tải dữ liệu…</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API  = 'http://localhost:3000/api/v1/computers';
+        const token = localStorage.getItem('token'); // nếu có JWT
+
+        async function loadComputers() {
+            const grid = document.getElementById('computerGrid');
+            grid.innerHTML = '<p class="loading">Đang tải…</p>';
+            try {
+                const q = document.getElementById('search').value.trim();
+                const url = new URL(API);
+                if (q) url.searchParams.set('q', q);
+
+                const res = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const json = await res.json();
+                if (!json.success) throw new Error(json.message);
+                renderGrid(json.data);
+            } catch (e) { showError(e.message); }
+        }
+
+        function renderGrid(list) {
+            const grid = document.getElementById('computerGrid');
+            if (!list.length) { grid.innerHTML = '<p>Không có máy nào.</p>'; return; }
+            grid.innerHTML = list.map(pc => `
+                <div class="pc-card" onclick="selectCard(${pc.id}, '${pc.name}', '${pc.ip_address}', '${pc.location}', '${pc.status}')">
+                    <h4>${pc.name}</h4>
+                    <div class="ip">${pc.ip_address}</div>
+                    <div class="location">${pc.location || '-'}</div>
+                    <span class="status ${pc.status}">${pc.status}</span>
+                </div>
+            `).join('');
+        }
+
+        function selectCard(computer_id, name, ip, loc, st) {
+    // lưu id vào dataset
+            document.getElementById('pcName').dataset.computerId = computer_id;
+            document.getElementById('pcName').value      = name;
+            document.getElementById('pcIP').value        = ip;
+            document.getElementById('pcLocation').value  = loc;
+            document.getElementById('pcStatus').value    = st;
+}
+
+        async function addComputer() {
+            const body = {
+                name:       document.getElementById('pcName').value.trim(),
+                ip_address: document.getElementById('pcIP').value.trim(),
+                location:   document.getElementById('pcLocation').value.trim(),
+                status:     document.getElementById('pcStatus').value
+            };
+            if (!body.name || !body.ip_address) return showError('Tên và IP không được để trống');
+            try {
+                const res = await fetch(API, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(body)
+                });
+                const json = await res.json();
+                if (!json.success) throw new Error(json.message);
+                loadComputers();
+            } catch (e) { showError(e.message); }
+        }
+
+        async function updateComputer() {
+            const id = document.getElementById('pcName').dataset.id;
+            if (!id) return showError('Chưa chọn máy để sửa');
+            const body = {
+                name:       document.getElementById('pcName').value.trim(),
+                ip_address: document.getElementById('pcIP').value.trim(),
+                location:   document.getElementById('pcLocation').value.trim(),
+                status:     document.getElementById('pcStatus').value
+            };
+            try {
+                const res = await fetch(`${API}/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(body)
+                });
+                const json = await res.json();
+                if (!json.success) throw new Error(json.message);
+                loadComputers();
+            } catch (e) { showError(e.message); }
+        }
+
+        async function deleteComputer() {
+            const computerId = document.getElementById('pcName').dataset.computerId;
+            if (!computerId || computerId === 'undefined') {
+                return showError('Chưa chọn máy để xóa');
+            }
+            if (!confirm('Xóa máy này?')) return;
+
+            try {
+                const res = await fetch(`${API}/${computerId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const json = await res.json();
+                if (!json.success) throw new Error(json.message);
+                loadComputers();          // reload danh sách
+                clearForm();              // reset form
+            } catch (e) { showError(e.message); }
+        }
+        function clearForm() {
+            delete document.getElementById('pcName').dataset.computerId;
+            document.getElementById('pcName').value      = '';
+            document.getElementById('pcIP').value        = '';
+            document.getElementById('pcLocation').value  = '';
+            document.getElementById('pcStatus').value    = 'available';
+        }
+        function showError(msg) {
+            const box = document.createElement('div');
+            box.style.cssText = 'position:fixed;top:20px;right:20px;background:#f44336;color:#fff;padding:12px 18px;border-radius:4px;z-index:9999';
+            box.textContent = msg;
+            document.body.appendChild(box);
+            setTimeout(() => box.remove(), 3000);
+        }
+
+        // init
+        loadComputers();
+    </script>
 </body>
 </html>

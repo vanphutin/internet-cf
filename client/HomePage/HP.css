@@ -191,3 +191,79 @@ body {
     color: #ff9800; 
     font-weight: bold;
 }
+/* Bổ sung thêm vào style.css */
+
+.customer-management-card {
+    /* Đảm bảo đồng bộ với tên class management-card */
+    padding: 20px;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.add-customer-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.search-area {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr; /* Hai trường input và một nút Tìm kiếm */
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.customer-table th, .customer-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+.customer-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+}
+.customer-table tr:hover {
+    background-color: #f1f1f1;
+}
+.action-cell button {
+    padding: 6px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+.btn-topup { background-color: #ffc107; color: #333; }
+.btn-edit { background-color: #2196F3; color: white; }
+.btn-delete { background-color: #f44336; color: white; }
+.btn-search {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px;
+}
+/* Style cho trường lỗi */
+.customer-table .error {
+    color: #f44336;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,0 +1,72 @@
+<section class="auth-section">
+  <div class="auth-card">
+    <div class="auth-info">
+      <h1>Tạo tài khoản mới</h1>
+      <p>Thêm tài khoản quản trị/nhân viên cho quán Internet của bạn.</p>
+
+      <ul class="auth-features">
+        <li>✔ Phân quyền rõ ràng</li>
+        <li>✔ Theo dõi lịch sử hoạt động</li>
+        <li>✔ Bảo mật tài khoản</li>
+      </ul>
+    </div>
+
+    <div class="auth-form-wrapper">
+      <h2>Đăng ký</h2>
+      <p class="auth-subtitle">Điền thông tin để tạo tài khoản mới</p>
+
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="reg-fullname">Họ tên</label>
+          <input
+            type="text"
+            id="reg-fullname"
+            name="name"
+            placeholder="Nguyễn Văn A"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="reg-username">Tên đăng nhập</label>
+          <input
+            type="text"
+            id="reg-username"
+            name="username"
+            placeholder="username"
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password">Mật khẩu</label>
+          <input
+            type="password"
+            id="reg-password"
+            name="password"
+            placeholder="••••••••"
+            autocomplete="new-password"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="reg-repassword">Nhập lại mật khẩu</label>
+          <input
+            type="password"
+            id="reg-repassword"
+            name="rePassword"
+            placeholder="••••••••"
+            autocomplete="new-password"
+          />
+        </div>
+
+        <button type="submit" class="btn-primary full-width">Đăng ký</button>
+
+        <div class="auth-links">
+          <button type="button" class="link-button" data-link="login">
+            Đã có tài khoản? Đăng nhập
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+<section class="page computers-page">
+  <header class="page-header">
+    <h1>Quản lý máy tính</h1>
+    <p>Danh sách máy, trạng thái sử dụng và vị trí lắp đặt.</p>
+  </header>
+
+  <div class="card">
+    <div class="card-header between">
+      <input
+        type="text"
+        id="pcSearch"
+        class="input"
+        placeholder="Tìm theo tên hoặc IP..."
+      />
+    </div>
+
+    <div id="computerGrid" class="pc-grid">
+      <p class="loading-text">Đang tải dữ liệu...</p>
+    </div>
+
+    <div class="pc-detail">
+      <h3>Thông tin chi tiết</h3>
+
+      <input type="hidden" id="computerIdHidden" />
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="pcName">Tên thiết bị</label>
+          <input
+            id="pcName"
+            type="text"
+            class="input"
+            placeholder="VD: Máy trạm 01"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pcIP">Địa chỉ IP</label>
+          <input
+            id="pcIP"
+            type="text"
+            class="input"
+            placeholder="VD: 192.168.1.10"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pcLocation">Vị trí</label>
+          <input
+            id="pcLocation"
+            type="text"
+            class="input"
+            placeholder="VD: Khu A - Dãy 1"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pcStatus">Trạng thái</label>
+          <select id="pcStatus" class="input">
+            <option value="available">Available</option>
+            <option value="in_use">In Use</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="btnAddComputer" class="btn-primary">Thêm mới</button>
+        <button id="btnUpdateComputer" class="btn-secondary">Cập nhật</button>
+        <button id="btnDeleteComputer" class="btn-danger">Xóa</button>
+        <button id="btnClearComputer" class="btn-ghost">Làm mới</button>
+      </div>
+    </div>
+  </div>
+</section>

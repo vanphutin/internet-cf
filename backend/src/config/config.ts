@@ -41,5 +41,4 @@ const config: Record<string, AppConfig> = {
     debug: false
   }
 }
-
 export default config[env]

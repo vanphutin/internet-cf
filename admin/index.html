@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Internet Cafe Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS tổng -->
+    <link rel="stylesheet" href="./src/css/main.css" />
+
+    <!-- Chart.js dùng cho trang Reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- SIDEBAR DÙNG CHUNG -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>☕ Internet Cafe</h1>
+        </div>
+        <nav class="sidebar-menu">
+          <button class="nav-link" data-page="dashboard">Dashboard</button>
+          <button class="nav-link" data-page="computers">
+            Computer Management
+          </button>
+          <button class="nav-link" data-page="customers">
+            Customer Management
+          </button>
+          <button class="nav-link" data-page="reports">
+            Reports &amp; Statistics
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <button id="logoutBtn" class="nav-link nav-logout">Logout</button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT: chỗ load các page HTML -->
+      <main id="page-container" class="main-content">
+        <!-- Nội dung page sẽ được JS load bằng fetch(...) -->
+      </main>
+    </div>
+
+    <!-- JS entry duy nhất -->
+    <script type="module" src="./src/js/main.js"></script>
+  </body>
+</html>

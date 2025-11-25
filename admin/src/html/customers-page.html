@@ -1,0 +1,121 @@
+<section class="page customers-page">
+  <header class="page-header">
+    <h1>Quản lý khách hàng</h1>
+    <p>Theo dõi tài khoản, số dư, lịch sử nạp tiền.</p>
+  </header>
+
+  <div class="card">
+    <div class="card-header between">
+      <div class="filters">
+        <input
+          id="searchUsername"
+          class="input"
+          placeholder="Tìm username..."
+        />
+        <input
+          id="searchPhone"
+          class="input"
+          placeholder="Tìm số điện thoại..."
+        />
+        <button id="searchBtn" class="btn-secondary">Tìm kiếm</button>
+        <button id="reloadBtn" class="btn-outline">↻ Reload</button>
+      </div>
+
+      <button id="addCustomerBtn" class="btn-primary">
+        ➕ Thêm khách hàng
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="table" id="customerTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Số dư (VNĐ)</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="customerTableBody">
+          <tr>
+            <td colspan="7" class="loading-text">Đang tải dữ liệu...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<!-- MODALS (Add, Edit, Topup) — giữ nguyên -->
+<div class="modal" id="modalAdd">
+  <div class="modal-content">
+    <h2>Thêm khách hàng</h2>
+    <div class="modal-form">
+      <label>Họ tên</label>
+      <input id="addName" class="input" />
+
+      <label>Username</label>
+      <input id="addUsername" class="input" />
+
+      <label>Password</label>
+      <input id="addPassword" type="password" class="input" />
+
+      <label>Số điện thoại</label>
+      <input id="addPhone" class="input" />
+
+      <label>Email</label>
+      <input id="addEmail" class="input" />
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" data-close>Hủy</button>
+      <button id="btnAddConfirm" class="btn-primary">Tạo</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalEdit">
+  <div class="modal-content">
+    <h2>Chỉnh sửa khách hàng</h2>
+    <input type="hidden" id="editId" />
+
+    <div class="modal-form">
+      <label>Họ tên</label>
+      <input id="editName" class="input" />
+
+      <label>Số điện thoại</label>
+      <input id="editPhone" class="input" />
+
+      <label>Email</label>
+      <input id="editEmail" class="input" />
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" data-close>Hủy</button>
+      <button id="btnEditConfirm" class="btn-primary">Lưu</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalTopup">
+  <div class="modal-content">
+    <h2>Nạp tiền</h2>
+    <input type="hidden" id="topupId" />
+
+    <div class="modal-form">
+      <label>Số tiền (VNĐ)</label>
+      <input id="topupAmount" type="number" class="input" min="0" />
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" data-close>Hủy</button>
+      <button id="btnTopupConfirm" class="btn-primary">Xác nhận</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<section class="page reports-page">
+  <div id="error" class="error-banner" style="display: none"></div>
+
+  <header class="page-header">
+    <h1>Reports &amp; Statistics</h1>
+    <p>Phân tích doanh thu, máy sử dụng và hàng tồn kho.</p>
+
+    <div class="reports-filters">
+      <input type="date" id="dateFrom" class="input" />
+      <input type="date" id="dateTo" class="input" />
+      <button id="filterBtn" class="btn-secondary">Lọc</button>
+    </div>
+  </header>
+
+  <div class="stat-cards">
+    <div class="stat-card">
+      <span class="stat-label">Tổng doanh thu</span>
+      <span class="stat-value" id="revenue">0 ₫</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Khách mới</span>
+      <span class="stat-value" id="newCustomers">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Máy đang hoạt động</span>
+      <span class="stat-value" id="activeComputers">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Đơn hàng chờ</span>
+      <span class="stat-value" id="pendingOrders">0</span>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Doanh thu theo ngày</h3>
+      <div class="chart-wrapper">
+        <canvas id="revenueDaily"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Doanh thu theo tháng</h3>
+      <div class="chart-wrapper">
+        <canvas id="revenueMonthly"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Phân bổ thời gian sử dụng máy</h3>
+      <div class="chart-wrapper">
+        <canvas id="computerUsage"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Trạng thái máy tính</h3>
+      <div class="chart-wrapper">
+        <canvas id="statusChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-cards status-summary">
+    <div class="stat-card">
+      <span class="stat-label">Available</span>
+      <span class="stat-value" id="statusAvailable">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">In Use</span>
+      <span class="stat-value" id="statusInUse">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Maintenance</span>
+      <span class="stat-value" id="statusMaintenance">0</span>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Sản phẩm/dịch vụ bán chạy</h3>
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng bán</th>
+            <th>Doanh thu</th>
+          </tr>
+        </thead>
+        <tbody id="topProducts">
+          <tr>
+            <td colspan="3" class="loading-text">Đang tải dữ liệu...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Khách hàng chi tiêu nhiều</h3>
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Khách hàng</th>
+            <th>Tổng chi tiêu</th>
+          </tr>
+        </thead>
+        <tbody id="topCustomers">
+          <tr>
+            <td colspan="2" class="loading-text">Đang tải dữ liệu...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Cảnh báo tồn kho thấp</h3>
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng hiện tại</th>
+            <th>Ngưỡng cảnh báo</th>
+          </tr>
+        </thead>
+        <tbody id="inventory">
+          <tr>
+            <td colspan="3" class="loading-text">Đang tải dữ liệu...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

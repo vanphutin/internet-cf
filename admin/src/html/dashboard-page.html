@@ -1,0 +1,47 @@
+<section class="dashboard-page">
+  <header class="page-header">
+    <h1>Dashboard tổng quan</h1>
+    <p>Chào mừng bạn trở lại phòng máy 👋</p>
+  </header>
+
+  <div class="stat-cards">
+    <div class="stat-card">
+      <span class="stat-label">Doanh thu hôm nay</span>
+      <span class="stat-value" id="dash-revenue-today">0 ₫</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Số khách đang online</span>
+      <span class="stat-value" id="dash-online-customers">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Máy đang sử dụng</span>
+      <span class="stat-value" id="dash-inuse-computers">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Máy bảo trì</span>
+      <span class="stat-value" id="dash-maintenance-computers">0</span>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-panel">
+      <h3>Hoạt động gần đây</h3>
+      <ul id="dash-activity" class="activity-list">
+        <li>Đang tải dữ liệu...</li>
+      </ul>
+    </div>
+
+    <div class="dashboard-panel">
+      <h3>Gợi ý thao tác nhanh</h3>
+      <div class="quick-actions">
+        <button class="btn-secondary" data-go="computers">
+          ➕ Thêm máy mới
+        </button>
+        <button class="btn-secondary" data-go="customers">
+          ➕ Thêm khách hàng
+        </button>
+        <button class="btn-secondary" data-go="reports">📊 Xem báo cáo</button>
+      </div>
+    </div>
+  </div>
+</section>

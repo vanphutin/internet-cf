@@ -578,6 +578,7 @@
 
       // ----- USER -----
       const user = JSON.parse(localStorage.getItem("user"));
+      console.log("user", user);
       if (!user) window.location.href = "login.html";
       document.getElementById("username").innerText = user.username;
       document.getElementById("name").innerText = user.name;

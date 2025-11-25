@@ -6,9 +6,11 @@ export class ComputerController {
     const filters = {
       status: req.query.status as any,
       location: req.query.location as string,
-      limit: Number(req.query.limit) || 10,
+      q: req.query.q as string,
+      limit: Number(req.query.limit) || 50,
       offset: Number(req.query.offset) || 0
     }
+
     ComputerService.list(filters, (err, rows) => {
       if (err) return res.status(500).json({ success: false, message: err.message })
       res.json({ success: true, data: rows })

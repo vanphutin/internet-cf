@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management - Internet Cafe</title>
+    <link rel="stylesheet" href="HP.css"> 
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <a href="#">☕ InternetCafe</a>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li onclick="location.href='index.html'">Dashboard</li>
+            <li onclick="location.href='#account'">Account</li>
+            <li onclick="location.href='computers.html'">Computer Management</li>
+            <li class="active" onclick="location.href='customers.html'">Customer Management</li>
+            <li onclick="location.href='reports.html'">Reports & Statistics</li>
+            <li onclick="location.href='#setting'">Setting</li>
+        </ul>
+        
+        <div class="logout-section">
+            <button class="logout-button" onclick="location.href='#logout'">Logout</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="customer-management-card management-card">
+            
+            <div class="card-header">
+                <h1>Quản lý Khách hàng</h1>
+                <button class="add-customer-button" onclick="openAddModal()">➕ Thêm Khách hàng</button>
+            </div>
+            
+            <div class="search-area">
+                <div class="input-field">
+                    <input type="text" id="searchUsername" placeholder="Tìm theo Username..." onkeyup="loadCustomers()">
+                </div>
+                <div class="input-field">
+                    <input type="text" id="searchPhone" placeholder="Tìm theo Phone..." onkeyup="loadCustomers()">
+                </div>
+                <button class="btn-search" onclick="loadCustomers()">Tìm kiếm</button>
+            </div>
+            
+            <table class="customer-table" id="customerTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên</th>
+                        <th>Username</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Số dư (VNĐ)</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                    <tr>
+                        <td colspan="7">Đang tải dữ liệu...</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <script src="customers.js"></script>
+    
+    </body>
+</html>

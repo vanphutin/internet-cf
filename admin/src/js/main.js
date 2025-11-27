@@ -5,6 +5,8 @@ import { initDashboardPage } from "./dashboard-module.js";
 import { initCustomersPage } from "./customers-module.js";
 import { initComputersPage } from "./computers-module.js";
 import { initReportsPage } from "./reports-module.js";
+import { initChatPage } from "./chat-module.js";
+import { connectWebSocket } from "./realtime.js";
 
 const pageInits = {
   login: initLoginPage,
@@ -13,6 +15,7 @@ const pageInits = {
   customers: initCustomersPage,
   computers: initComputersPage,
   reports: initReportsPage,
+  chat: initChatPage,
 };
 
 function setActiveNav(pageName) {
@@ -89,5 +92,12 @@ window.addEventListener("DOMContentLoaded", () => {
     goTo("login");
   } else {
     goTo("dashboard");
+
+    setTimeout(() => {
+      const path = location.hash.replace("#", "");
+      if (["dashboard", "customers", "computers", "reports"].includes(path)) {
+        connectWebSocket();
+      }
+    }, 200);
   }
 });

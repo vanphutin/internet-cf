@@ -5,9 +5,13 @@ import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
 import database from './config/db.conf'
 import routers from './apis/routes/index.router'
+import { createServer } from 'http'
+import { initWebSocket } from './websocket/index'
 
 const PORT: number = Number(process.env.PORT) || 5000
 const app: Application = express()
+
+const server = createServer(app)
 
 // ⭐ Mở full CORS cho toàn bộ API
 app.use(
@@ -41,7 +45,10 @@ database.getConnection((error, connection) => {
 
   connection.release()
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server đang chạy trên port ${PORT} | Environment: ${process.env.NODE_ENV}`)
+  // Khởi động server HTTP + WebSocket 1 lần duy nhất
+  server.listen(PORT, () => {
+    // khởi tạo websocket sau khi server sẵn sàng
+    initWebSocket(server)
+    console.log(`🚀 Server & WS đang chạy trên port ${PORT} | Environment: ${process.env.NODE_ENV}`)
   })
 })

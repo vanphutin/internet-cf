@@ -1,3 +1,4 @@
+import { log } from 'console'
 import { AuthModel } from '../models/user.model'
 import { hashPwd, comparePwd } from '../utils/bcrypt.util'
 import { signToken } from '../utils/jwt.util'
@@ -33,13 +34,13 @@ export class AuthService {
     AuthModel.findByUsername(username, (err, user) => {
       if (err) return callback(err)
       if (!user) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
-
       comparePwd(password, user.password)
         .then((ok) => {
           if (!ok) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
           const token = signToken({
-            id: user.employee_id,
-            role: user.role_id,
+            id: user.id,
+            role: user.role_name.toLowerCase(),
+            name: user.name || null,
             username: user.username
           })
           const { password, ...safeUser } = user
@@ -58,13 +59,13 @@ export class AuthService {
     AuthModel.findByUsernameCustomer(username, (err, user) => {
       if (err) return callback(err)
       if (!user) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
-
       comparePwd(password, user.password)
         .then((ok) => {
           if (!ok) return callback(new Error('Sai tài khoản hoặc mật khẩu'))
           const token = signToken({
-            id: user.customer_id,
-            role: user.role_id,
+            id: user.id,
+            role: user.role_name.toLowerCase(),
+            name: user.name || null,
             username: user.username
           })
           const { password, ...safeUser } = user

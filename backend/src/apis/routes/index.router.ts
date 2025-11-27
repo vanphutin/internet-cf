@@ -5,7 +5,8 @@ import customerRoutes from './customer.routes'
 import reportRoutes from './report.routes'
 import menuRoutes from './menu.routes'
 import dashboardRoutes from './dashboard.routes'
-
+import messageRoutes from './message.routes' // added
+import employeeRoutes from './employee.routes'
 export default (app: Application) => {
   const router = Router()
   router.use('/auth', authRouter)
@@ -14,6 +15,8 @@ export default (app: Application) => {
   router.use('/reports', reportRoutes)
   router.use('/menu', menuRoutes)
   router.use('/dashboard', dashboardRoutes)
+  router.use('/messages', messageRoutes)
+  router.use('/employees', employeeRoutes)
 
   app.use('/api/v1', router)
 }

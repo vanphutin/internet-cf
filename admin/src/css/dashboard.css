@@ -82,3 +82,28 @@
 .btn-secondary:hover {
   background-color: #bdc3c7;
 }
+
+.topup-request-card {
+  @apply bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-lg relative overflow-hidden;
+}
+
+.topup-request-card::before {
+  content: "";
+  @apply absolute -top-10 -right-10 w-32 h-32 bg-amber-300/20 rounded-full blur-3xl;
+}
+
+.topup-request-card h3 {
+  @apply text-xl font-bold text-amber-900 mb-2;
+}
+
+.topup-request-card .amount {
+  @apply text-3xl font-extrabold text-orange-600 mb-3;
+}
+
+.topup-request-card .time {
+  @apply text-sm text-amber-700;
+}
+
+.topup-request-actions {
+  @apply flex gap-3 mt-4;
+}

@@ -31,6 +31,32 @@
       </ul>
     </div>
 
+    <!-- THÊM VÀO dashboard-page.html HOẶC customers-page.html -->
+    <div class="mb-8">
+      <h2
+        class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3"
+      >
+        Yêu cầu nạp tiền đang chờ
+        <span
+          id="pendingCount"
+          class="bg-red-500 text-white text-xs px-2.5 py-1 rounded-full animate-pulse"
+          >0</span
+        >
+      </h2>
+
+      <div
+        id="topupRequests"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <!-- Các request sẽ được render tự động bởi JS -->
+      </div>
+
+      <!-- Nếu không có yêu cầu nào -->
+      <div id="noRequests" class="text-center py-12 text-slate-500 hidden">
+        Không có yêu cầu nạp tiền nào đang chờ xử lý
+      </div>
+    </div>
+
     <div class="dashboard-panel">
       <h3>Gợi ý thao tác nhanh</h3>
       <div class="quick-actions">
